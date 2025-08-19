@@ -7,7 +7,11 @@ function book(title, author, pageNum){
     this.id = crypto.randomUUID();
 }
 
-function addBookToLibrary(title, author, pageNum){
+function addBookToLibrary(){
+    title = document.querySelector("#title").value;
+    author = document.querySelector("#author").value;
+    pageNum = document.querySelector("#pageNum").value;
+
     const newBook = new book(title, author, pageNum);
     library.push(newBook);
 }
@@ -25,11 +29,35 @@ closeForm.addEventListener('click', () => {
     modal.close();
 });
 
-submitBook.addEventListener('click', () => {
+submitBook.addEventListener('click', (e) => {
+    e.preventDefault();
     addBookToLibrary();
-    displayBook() = library.forEach((book) => 
-    let display = document.querySelector(".display");
-    display.insertCell(0)
-    )
-
+    modal.close();
+    displayBooks();
 });
+
+function displayBooks() {
+    let display = document.querySelector(".display");
+    display.innerHTML = "";
+    
+    library.forEach((book) => {
+        let row = display.insertRow();
+        row.dataset.id = book.id;
+
+        row.insertCell(0);
+        row.insertCell(1).textContent = book.title;
+        row.insertCell(2).textContent = book.author;
+        row.insertCell(3).textContent = book.pageNum;
+
+        let deleteCell = row.insertCell(4);
+        let deleteBook = document.createElement("button");
+        deleteBook.textContent = "Remove";
+        deleteCell.appendChild(deleteBook);
+
+        
+        deleteBook.addEventListener('click', () => {
+            library = library.filter((b => b.id != book.id )); 
+            displayBooks(); 
+        });
+    });
+}
