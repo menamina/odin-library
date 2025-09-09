@@ -22,13 +22,13 @@
     <button class="openModal">New Book</button>
 
     <dialog class="modal">
-        <form method="dialog">
+        <form method="dialog" class="modalForm">
             <label for="">Title</label>
             <input id="title" type="text" minlength="2">
             <label for="">Author</label>
             <input id="author" type="text" minlength="2">
             <label for="">Number of Pages</label>
-            <input id="pageNum" type="number">
+            <input id="pageNum" type="number" min="1">
             <button class="submit">add book!</button>
             <button class="cancel">cancel</button>
         </form>

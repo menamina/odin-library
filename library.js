@@ -8,9 +8,9 @@ function book(title, author, pageNum){
 }
 
 function addBookToLibrary(){
-    title = document.querySelector("#title").value;
-    author = document.querySelector("#author").value;
-    pageNum = document.querySelector("#pageNum").value;
+    const title = document.querySelector("#title").value;
+    const author = document.querySelector("#author").value;
+    const pageNum = document.querySelector("#pageNum").value;
 
     const newBook = new book(title, author, pageNum);
     library.push(newBook);
@@ -61,3 +61,22 @@ function displayBooks() {
         });
     });
 }
+
+const form = document.querySelector(".modalForm");
+const title = document.querySelector("#title").value;
+const author = document.querySelector("#author").value;
+const pageNum = document.querySelector("#pageNum").value;
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const inputs = [title, author, pageNum];
+
+  inputs.forEach(input => {
+    if (!input.checkValidity()) {
+      allValid = false;
+      console.log(`${input.id} is invalid: ${input.validationMessage}`);
+    } else {
+      console.log(`${input.id} is valid!`);
+    }
+  });
+});
